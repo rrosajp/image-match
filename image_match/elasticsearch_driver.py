@@ -56,16 +56,11 @@ class SignatureES(SignatureDatabaseBase):
         should = [{'term': {word: rec[word]}} for word in rec]
         res = self.es.search(index=self.index,
                               doc_type=self.doc_type,
-                              body={'query':
-                                      {
-                                          'filtered': {
-                                              'query': {
-                                                    'bool': {'should': should}
-                                              }
-                                          }
-                                      },
+                              body={'query': {
+                                       'bool': {'should': should}
+                                     },
                                     '_source': {'exclude': ['simple_word_*']}
-                              },
+                                   },
                               size=self.size,
                               timeout=self.timeout)['hits']['hits']
 
