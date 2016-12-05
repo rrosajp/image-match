@@ -59,7 +59,7 @@ class SignatureES(SignatureDatabaseBase):
                               body={'query': {
                                        'bool': {'should': should}
                                      },
-                                    '_source': {'exclude': ['simple_word_*']}
+                                    '_source': {'excludes': ['simple_word_*']}
                                    },
                               size=self.size,
                               timeout=self.timeout)['hits']['hits']
